@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Upload Deal</title></head>
+<body>
+  <h1>Upload a New Deal</h1>
+  <form method="POST" action="/api/broker/upload-deal">
+    <input type="text" name="propertyAddress" placeholder="Property Address" required />
+    <input type="number" name="loanAmount" placeholder="Loan Amount" required />
+    <input type="text" name="creditScore" placeholder="Credit Score" required />
+    <button type="submit">Submit Deal</button>
+  </form>
+</body>
+</html>
