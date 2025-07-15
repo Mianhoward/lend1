@@ -1,0 +1,14 @@
+{
+  "name": "mortgage-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.0",
+    "express-session": "^1.17.3",
+    "dotenv": "^16.4.5"
+  }
+}
