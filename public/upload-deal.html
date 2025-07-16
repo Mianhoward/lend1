@@ -2,12 +2,12 @@
 <html>
 <head><title>Upload Deal</title></head>
 <body>
-  <h1>Upload a New Deal</h1>
+  <h1>Upload Deal</h1>
   <form method="POST" action="/api/broker/upload-deal">
-    <input type="text" name="propertyAddress" placeholder="Property Address" required />
-    <input type="number" name="loanAmount" placeholder="Loan Amount" required />
-    <input type="text" name="creditScore" placeholder="Credit Score" required />
-    <button type="submit">Submit Deal</button>
+    <input name="propertyAddress" placeholder="Property Address" required /><br>
+    <input name="loanAmount" type="number" placeholder="Loan Amount" required /><br>
+    <input name="creditScore" type="number" placeholder="Credit Score" required /><br>
+    <button type="submit">Submit</button>
   </form>
 </body>
 </html>
