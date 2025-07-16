@@ -1,38 +1,31 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const session = require('express-session');
+const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-mongoose.set('strictQuery', false);
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('✅ MongoDB connected');
-}).catch(err => {
-  console.error('❌ MongoDB connection error:', err);
-});
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ MongoDB connected'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'secret123',
+  secret: 'mortgage_secret',
   resave: false,
   saveUninitialized: true
 }));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// Routes
+const brokerRoutes = require('./routes/brokerRoutes');
+const lenderRoutes = require('./routes/lenderRoutes');
+app.use('/api/broker', brokerRoutes);
+app.use('/api/lender', lenderRoutes);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// Start server
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
