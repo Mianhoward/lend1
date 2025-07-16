@@ -3,7 +3,6 @@ const router = express.Router();
 const Broker = require('../models/Broker');
 const Deal = require('../models/Deal');
 
-// Broker login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const broker = await Broker.findOne({ email });
@@ -15,7 +14,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Upload a deal
 router.post('/upload-deal', async (req, res) => {
   if (!req.session.brokerId) return res.status(403).send('Unauthorized');
   const { propertyAddress, loanAmount, creditScore } = req.body;

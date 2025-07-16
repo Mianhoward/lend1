@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Lender = require('../models/Lender');
 
-// Lender login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   const lender = await Lender.findOne({ email });
